@@ -2,7 +2,7 @@ var iframeContents = $kj("div.frame-application-scroll-wrapper iframe").contents
 var frameWrapper = $kj(iframeContents).find("#FrameWrapper");
 $kj(iframeContents).find("#LibraryList div.body").bind("DOMNodeInserted",waitForFrameToLoad);
 
-frameWrapper.prepend("<img id='biggerThumbnailXpm' src='//pbs.twimg.com/profile_images/1766079984/Twitterbuddyoriginal.jpg' style='width:256px;height:256px;position:absolute;bottom:0;right:0;opacity:0.5'>");
+frameWrapper.prepend("<img id='biggerThumbnailXpm' src='//pbs.twimg.com/profile_images/1766079984/Twitterbuddyoriginal.jpg' style='width:256px;height:256px;position:absolute;bottom:0;right:0;opacity:0.75'>");
 
 function waitForFrameToLoad()
 {
