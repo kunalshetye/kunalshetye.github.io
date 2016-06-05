@@ -3,7 +3,7 @@
 // @namespace    http://kunalshetye.github.io/
 // @version      0.2
 // @description  improve employee-portal one javascript at a time
-// @author       You
+// @author       Kunal Shetye
 // @match        https://employeeportal.sdl.com/Timesheet.aspx
 // @grant        none
 // @noframes     1
