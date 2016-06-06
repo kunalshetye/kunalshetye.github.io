@@ -1,27 +1,17 @@
 // ==UserScript==
 // @name         Employee Portal Enhancements
 // @namespace    http://kunalshetye.github.io/
-// @version      0.2
+// @version      0.3
 // @description  improve employee-portal one javascript at a time
 // @author       Kunal Shetye
 // @match        https://employeeportal.sdl.com/Timesheet.aspx
-// @grant        none
+// @require      https://kunalshetye.github.io/tm/Employee.Portal.Enhancements/script.js
 // @noframes     1
+// @resource     CSS https://kunalshetye.github.io/tm/Employee.Portal.Enhancements/style.css
+// @grant        GM_addStyle
+// @grant        GM_getResourceText
+
 // ==/UserScript==
 
-$(function(){
-    var originalFunction = SaveNewImageButton_Click;
-    var originalFunctionString = SaveNewImageButton_Click.toString();
-    var patchedFunctionString = originalFunctionString.replace("if (workEnd > new Date())", "if (workEnd != workEnd)").replace("function SaveNewImageButton_Click()", "function()");
-    SaveNewImageButton_Click = eval("(" + patchedFunctionString + ")");
-    var saveNewTSRecordOriginalFunction = saveNewTSRecord;
-    var saveNewTSRecordFunctionString = saveNewTSRecord.toString();
-    var patchedSaveNewTSRecordFunctionString = saveNewTSRecordFunctionString.replace("var sComment = tbComment.text();", "var sComment = tbComment.val();");
-    saveNewTSRecord = eval("(" + patchedSaveNewTSRecordFunctionString + ")");
-    var CreatePendingRecordOriginalFunction = CreatePendingRecord;
-    var CreatePendingRecordFunctionString = CreatePendingRecord.toString();
-    var patchedCreatePendingRecordFunctionString = CreatePendingRecordFunctionString.replace("$('#MasterPage_ContentPlaceHolder1_CommentTextBoxNew').text();", "$('#MasterPage_ContentPlaceHolder1_CommentTextBoxNew').val();");
-    CreatePendingRecord = eval("(" + patchedCreatePendingRecordFunctionString + ")");
-    //showThickbox("ThickBox1", "You can now log work against time in the future, with descriptions on Chrome! ;)");
-    $("div#HomeContent span#MasterPage_PageTitleSuffix").html($("div#HomeContent span#MasterPage_PageTitleSuffix").text() + " (God Mode)");
-});
+var newCSS = GM_getResourceText ("CSS");
+GM_addStyle (newCSS);
