@@ -1,15 +1,3 @@
-// ==UserScript==
-// @name         Employee Portal Enhancements
-// @namespace    http://kunalshetye.github.io/
-// @version      0.2
-// @description  improve employee-portal one javascript at a time
-// @author       Kunal Shetye
-// @match        https://employeeportal.sdl.com/Timesheet.aspx
-// @require      https://kunalshetye.github.io/js/tm/Employee.Portal.Enhancements.js
-// @grant        none
-// @noframes     1
-// ==/UserScript==
-
 $(function(){
     var originalFunction = SaveNewImageButton_Click;
     var originalFunctionString = SaveNewImageButton_Click.toString();
@@ -32,23 +20,25 @@ $(function(){
     lbBackToSummary_Click = eval("(" + patchedlbBackToSummary_ClickFunctionString + ")");
 
     window.$iDays = 5;
-    $("#Menu").append('<li><label for="duration">Number of days:</label><input type="text" id="duration" name="duration" value="5"><a id="getrecords" href="#">Fetch</a></li>');
+    //$("form").prepend('<ul><li><label for="duration">Number of days:</label><input type="text" id="duration" name="duration" value="5"><a id="getrecords" href="#">Fetch</a></li></ul>');
+    $("#Menu").append('<li><label for="duration">Fetch data for days:</label><input type="text" id="duration" name="duration" value="5"><a id="getrecords" href="#">Fetch</a></li>');
     $("#getrecords").click(function(e){
         window.$iDays = $("#duration").val();
         lbBackToSummary_Click();
-        console.log("Fetching...");
-        $(function(){
-            var items = $("#TimesheetList a");
-            for(var i=0;i<items.length;i++){
-                if(i%2==0) {
-                    //$(items[i])[0].click();
-                }
-            }
-        });
-    })
+        console.log("Fetching data for days: "+window.$iDays);
+        $(document).ajaxComplete(function() {
+            expandRecords();
+        }); 
+    });
+    expandRecords();
 });
 
 
-function getRecords(){
-
+function expandRecords(){
+    var items = $("#TimesheetList a");
+    for(var i=0;i<items.length;i++){
+        if(i%2==0) {
+            $(items[i])[0].click();
+        }
+    }
 }
