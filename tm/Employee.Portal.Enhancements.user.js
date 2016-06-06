@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Employee Portal Enhancements
 // @namespace    http://kunalshetye.github.io/
-// @version      0.3
+// @version      0.31
 // @description  improve employee-portal one javascript at a time
 // @author       Kunal Shetye
 // @match        https://employeeportal.sdl.com/Timesheet.aspx

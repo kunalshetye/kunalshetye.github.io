@@ -34,7 +34,6 @@ $(function(){
 
 
 function expandRecords(){
-    $("#MasterPage_ContentPlaceHolder1_pnlSummary span").html(window.$iDays + " Day Summary");
     var items = $("#TimesheetList a");
     for(var i=0;i<items.length;i++){
         if(i%2==0) {
