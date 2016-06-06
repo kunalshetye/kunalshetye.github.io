@@ -20,7 +20,6 @@ $(function(){
     lbBackToSummary_Click = eval("(" + patchedlbBackToSummary_ClickFunctionString + ")");
 
     window.$iDays = 5;
-    //$("form").prepend('<ul><li><label for="duration">Number of days:</label><input type="text" id="duration" name="duration" value="5"><a id="getrecords" href="#">Fetch</a></li></ul>');
     $("#Menu").append('<li><label for="duration">Fetch data for days:</label><input type="text" id="duration" name="duration" value="5"><a id="getrecords" href="#">Fetch</a></li>');
     $("#getrecords").click(function(e){
         window.$iDays = $("#duration").val();
@@ -35,6 +34,7 @@ $(function(){
 
 
 function expandRecords(){
+    $("#MasterPage_ContentPlaceHolder1_pnlSummary span").html(window.$iDays + " Day Summary");
     var items = $("#TimesheetList a");
     for(var i=0;i<items.length;i++){
         if(i%2==0) {
