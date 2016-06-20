@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Publish Queue Enhancements
 // @namespace    http://kunalshetye.github.io/
-// @version      0.1
+// @version      0.11
 // @description  Make the Publishing Queue nice
 // @author       Kunal Shetye
 // @match        http://*/WebUI/Editors/CME/Views/Popups/PublishQueue/PublishQueue.aspx
@@ -12,7 +12,7 @@
 // ==/UserScript==
 
 $kj(function(){
-	$kj("#ButtonContainer").prepend('<input type="checkbox" id="autorefresh" name="autorefresh"><label for="autorefresh">Auto Refresh</label>');
+	$kj("#ButtonContainer").prepend('<input type="checkbox" id="autorefresh" name="autorefresh" checked><label for="autorefresh">Auto Refresh</label>');
 	setInterval(AutoRefresh,5000);
 });
 
