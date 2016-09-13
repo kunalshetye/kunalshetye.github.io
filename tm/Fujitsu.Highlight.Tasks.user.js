@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         Fujitsu Highlight Tasks
 // @namespace    kunalshetye.github.io
-// @version      0.11
+// @version      0.12
 // @description  Highlight Pending/In Progress tasks for Partners
 // @author       Kunal Shetye
-// @match        https://partners.ts.fujitsu.com/teams/p/is/oic4/Lists/workitems/all.aspx
+// @match        https://partners.ts.fujitsu.com/teams/p/is/*
 // @grant        none
 // @require      https://code.jquery.com/jquery-2.2.4.min.js
 // ==/UserScript==
