@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         Publish Queue Enhancements
 // @namespace    http://kunalshetye.github.io/
-// @version      0.11
+// @version      0.12
 // @description  Make the Publishing Queue nice
 // @author       Kunal Shetye
 // @match        http://*/WebUI/Editors/CME/Views/Popups/PublishQueue/PublishQueue.aspx
-// @match        http://*/WebUI/Editors/CME/Views/Popups/PublishQueue/PublishQueue.aspx
+// @match        https://*/WebUI/Editors/CME/Views/Popups/PublishQueue/PublishQueue.aspx
 // @grant        none
 // @require      http://kunalshetye.github.io/js/jquery.js
 // @noframes     1
