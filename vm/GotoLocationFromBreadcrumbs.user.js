@@ -17,7 +17,6 @@ jQuery(window).on('load',function(){
 
 function waitForTridion(){
     if(typeof $display !== "undefined" || typeof $evt !== "undefined"){      
-      console.log("bazinga!");
       $evt.addEventHandler($display, "start", displayStart);
     }
     else{
@@ -55,6 +54,5 @@ function zetHemOp(){
   jQuery.each(jQuery("#ItemAddressBar .addressbaritem"),function(i, v){
     var cmd = "javascript:s = new Tridion.Web.UI.Editors.Base.Selection(); s.addItem('"+window.organizationalItems[i]+"');$cme.getCommand('Goto')._execute(s)";
     jQuery(v).wrap('<a href="'+cmd+'"></a>')
-    //'javascript:{$cme.getCommand("Goto")._execute("'+window.organizationalItems[i]+'")};'
   });
 }
