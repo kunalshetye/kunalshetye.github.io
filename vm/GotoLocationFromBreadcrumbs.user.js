@@ -4,7 +4,7 @@
 // @match       http://*/WebUI/item.aspx
 // @match       https://*/WebUI/item.aspx
 // @grant       none
-// @version     0.1
+// @version     0.11
 // @author      Kunal Shetye
 // @description 9/29/2020, 6:15:44 PM
 // ==/UserScript==
