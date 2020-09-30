@@ -4,12 +4,12 @@
 // @match       http://*/WebUI/item.aspx
 // @match       https://*/WebUI/item.aspx
 // @grant       none
-// @version     0.12
+// @version     0.13
 // @author      Kunal Shetye
-// @description 9/29/2020, 6:15:44 PM
 // ==/UserScript==
 
-window.organizationalItems = [];
+unsafeWindow.gotoLocation = {};
+unsafeWindow.gotoLocation.organizationalItems = [];
 
 jQuery(window).on('load',function(){
   waitForTridion();
@@ -29,13 +29,13 @@ function displayStart(){
 }
 
 function fieldBuilderLoad(){
-  loadOrganizationalItems ($display.getItem().getOrganizationalItem());
+  prepTheBreadcrumbs();
 }
 
 function loadOrganizationalItems(orgItem){
    if(!orgItem.isLoaded()){
       $evt.addEventHandler(orgItem,"load",function(){
-        window.organizationalItems.push(orgItem.getId())
+        unsafeWindow.gotoLocation.organizationalItems.push(orgItem.getId());
         if(!orgItem.getId().endsWith("-1")) {
           loadOrganizationalItems(orgItem.getOrganizationalItem());
         }
@@ -43,21 +43,25 @@ function loadOrganizationalItems(orgItem){
       orgItem.load();
   }
   else{
-    window.organizationalItems.push(orgItem.getId()); 
-    if(orgItem.getId().endsWith("-1")) {
-      zetHemOp();
-    }
-    else{
+    unsafeWindow.gotoLocation.organizationalItems.push(orgItem.getId()); 
+    if(!orgItem.getId().endsWith("-1")) {
       loadOrganizationalItems(orgItem.getOrganizationalItem());
     }
   }
 }
 
-function zetHemOp(){
-  window.organizationalItems.reverse();
-  console.log(window.organizationalItems);
+
+function prepTheBreadcrumbs(){
   jQuery.each(jQuery("#ItemAddressBar .addressbaritem"),function(i, v){
-    var cmd = "javascript:s = new Tridion.Web.UI.Editors.Base.Selection(); s.addItem('"+window.organizationalItems[i]+"');$cme.getCommand('Goto')._execute(s)";
+    var cmd = "javascript:window.gotoLocation.linkWasClicked("+i+");";
     jQuery(v).wrap('<a href="'+cmd+'"></a>')
   });
+}
+
+unsafeWindow.gotoLocation.linkWasClicked = function(i){
+  loadOrganizationalItems($display.getItem().getOrganizationalItem());
+  unsafeWindow.gotoLocation.organizationalItems.reverse();
+  s = new Tridion.Web.UI.Editors.Base.Selection();
+  s.addItem(unsafeWindow.gotoLocation.organizationalItems[i]);
+  $cme.getCommand('Goto')._execute(s);
 }
