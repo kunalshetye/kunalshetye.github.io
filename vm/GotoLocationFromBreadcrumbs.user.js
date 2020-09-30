@@ -4,7 +4,7 @@
 // @match       http://*/WebUI/item.aspx
 // @match       https://*/WebUI/item.aspx
 // @grant       none
-// @version     0.11
+// @version     0.12
 // @author      Kunal Shetye
 // @description 9/29/2020, 6:15:44 PM
 // ==/UserScript==
@@ -36,15 +36,20 @@ function loadOrganizationalItems(orgItem){
    if(!orgItem.isLoaded()){
       $evt.addEventHandler(orgItem,"load",function(){
         window.organizationalItems.push(orgItem.getId())
-        if(orgItem.getId !== "tcm:0") {
+        if(!orgItem.getId().endsWith("-1")) {
           loadOrganizationalItems(orgItem.getOrganizationalItem());
         }
       });
       orgItem.load();
   }
   else{
-    window.organizationalItems.push(orgItem.getId()); // we reached the publication
-    zetHemOp();
+    window.organizationalItems.push(orgItem.getId()); 
+    if(orgItem.getId().endsWith("-1")) {
+      zetHemOp();
+    }
+    else{
+      loadOrganizationalItems(orgItem.getOrganizationalItem());
+    }
   }
 }
 
