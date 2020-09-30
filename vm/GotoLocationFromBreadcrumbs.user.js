@@ -4,7 +4,7 @@
 // @match       http://*/WebUI/item.aspx
 // @match       https://*/WebUI/item.aspx
 // @grant       none
-// @version     0.15
+// @version     0.16
 // @author      Kunal Shetye
 // ==/UserScript==
 
@@ -52,12 +52,12 @@ function loadOrganizationalItems(orgItem){
   }
 }
 
-
-function prepTheBreadcrumbs(){
-  jQuery.each(jQuery("#ItemAddressBar .addressbaritem"),function(i, v){
-    var cmd = "javascript:window.gotoLocation.linkWasClicked("+i+");";
-    jQuery(v).wrap('<a href="'+cmd+'"></a>');
-  });
+function prepTheBreadcrumbs() {
+    jQuery.each(jQuery("#ItemAddressBar .addressbaritem"), function (i, v){
+        var cmd = "javascript:window.GoToLocation.Commands.linkWasClicked(" + i + ");";
+        var elementHtml = jQuery(v).html();
+        jQuery(v).html('<a href="' + cmd + '" style="cursor: pointer;">'+ elementHtml +'</a>');
+    });
 }
 
 unsafeWindow.gotoLocation.linkWasClicked = function(i){
