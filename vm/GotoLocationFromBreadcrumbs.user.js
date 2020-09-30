@@ -4,7 +4,7 @@
 // @match       http://*/WebUI/item.aspx
 // @match       https://*/WebUI/item.aspx
 // @grant       none
-// @version     0.13
+// @version     0.14
 // @author      Kunal Shetye
 // ==/UserScript==
 
@@ -54,13 +54,15 @@ function loadOrganizationalItems(orgItem){
 function prepTheBreadcrumbs(){
   jQuery.each(jQuery("#ItemAddressBar .addressbaritem"),function(i, v){
     var cmd = "javascript:window.gotoLocation.linkWasClicked("+i+");";
-    jQuery(v).wrap('<a href="'+cmd+'"></a>')
+    jQuery(v).wrap('<a href="'+cmd+'"></a>');
   });
 }
 
 unsafeWindow.gotoLocation.linkWasClicked = function(i){
-  loadOrganizationalItems($display.getItem().getOrganizationalItem());
-  unsafeWindow.gotoLocation.organizationalItems.reverse();
+  if(unsafeWindow.gotoLocation.organizationalItems.length === 0){
+    loadOrganizationalItems($display.getItem().getOrganizationalItem());
+    unsafeWindow.gotoLocation.organizationalItems.reverse();	
+  }
   s = new Tridion.Web.UI.Editors.Base.Selection();
   s.addItem(unsafeWindow.gotoLocation.organizationalItems[i]);
   $cme.getCommand('Goto')._execute(s);
