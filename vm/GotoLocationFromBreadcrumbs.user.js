@@ -54,7 +54,7 @@ function loadOrganizationalItems(orgItem){
 
 function prepTheBreadcrumbs() {
     jQuery.each(jQuery("#ItemAddressBar .addressbaritem"), function (i, v){
-        var cmd = "javascript:window.GoToLocation.Commands.linkWasClicked(" + i + ");";
+        var cmd = "javascript:window.gotoLocation.linkWasClicked(" + i + ");";
         var elementHtml = jQuery(v).html();
         jQuery(v).html('<a href="' + cmd + '" style="cursor: pointer;">'+ elementHtml +'</a>');
     });
