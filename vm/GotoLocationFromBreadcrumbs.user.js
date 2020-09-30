@@ -4,7 +4,7 @@
 // @match       http://*/WebUI/item.aspx
 // @match       https://*/WebUI/item.aspx
 // @grant       none
-// @version     0.14
+// @version     0.15
 // @author      Kunal Shetye
 // ==/UserScript==
 
@@ -25,12 +25,14 @@ function waitForTridion(){
 }
 
 function displayStart(){
-  $evt.addEventHandler($display.getView().properties.controls.fieldBuilder,"load", fieldBuilderLoad);
+  if($display.getView().properties.addressBarInitialized === true){
+    prepTheBreadcrumbs();
+  }
+  else{
+      setTimeout(displayStart, 250);
+  }
 }
 
-function fieldBuilderLoad(){
-  prepTheBreadcrumbs();
-}
 
 function loadOrganizationalItems(orgItem){
    if(!orgItem.isLoaded()){
