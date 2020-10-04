@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Netflix display IMDb ratings
 // @namespace    Violentmonkey Scripts
-// @version      0.1
+// @version      0.10
 // @description  Add a display of IMDb ratings below movie and show titles while browsing Netflix. Original script and credits: https://greasyfork.org/en/scripts/389629-netflix-display-imdb-ratings/stats
 // @author       lunako2
 // @match        *://*.netflix.com/*
